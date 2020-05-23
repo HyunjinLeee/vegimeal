@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "579756922895",
+    "firebase_url": "https://vegan-daily-app-vegimeal.firebaseio.com",
+    "project_id": "vegan-daily-app-vegimeal",
+    "storage_bucket": "vegan-daily-app-vegimeal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:579756922895:android:98430e6682fb570ac52b7a",
+        "android_client_info": {
+          "package_name": "com.example.flutterapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "579756922895-cmbnr9ri1sr8bjr4pnuppqu6s3ucahvp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.flutterapp",
+            "certificate_hash": "64bc2e44d2c52e352a9d8f13d37b8c345f618735"
+          }
+        },
+        {
+          "client_id": "579756922895-slhv0tpep7gl3rbosd37mu7cgjj2021h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAIZ5mJNcFPSSWV0h0jOSuockgm2_922Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "579756922895-slhv0tpep7gl3rbosd37mu7cgjj2021h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
