@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'login.dart';
+import 'tab_page.dart';
 
 class VegimealApp extends StatelessWidget {
 
@@ -11,6 +12,7 @@ class VegimealApp extends StatelessWidget {
         initialRoute: '/login',
         routes: {
           '/login': (context) => LoginPage(),
+//          '/tabpage': (context) => TabPage(),
         }
     );
   }

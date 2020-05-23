@@ -85,7 +85,7 @@ class _GoogleSignInSectionState extends State<_GoogleSignInSection> {
           child: RaisedButton(
             onPressed: () async {
               _signInWithGoogle();
-              Navigator.pushNamed(context,'/home');
+//              Navigator.pushNamed(context,'/tabpage'); //////////////
             },
             child: const Text('Sign in with Google'),
           ),
