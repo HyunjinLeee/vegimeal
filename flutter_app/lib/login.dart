@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final GoogleSignIn _googleSignIn = GoogleSignIn();
@@ -116,7 +117,13 @@ class _GoogleSignInSectionState extends State<_GoogleSignInSection> {
       if (user != null) {
         _userID = user.uid;
         LoginPage.loginUser = user.uid;
-//        Firestore.instance.collection('user').document(_userID).setData({ 'profile': user.photoUrl, 'email': user.email});
+        Firestore.instance.collection('farm').document(_userID).get().then((docSnapshot) => {
+            if (!docSnapshot.exists) {
+              //유저가 처음일 경우
+              //원래는 새로운 이름 입력받고 해야함,,,
+            Firestore.instance.collection('farm').document(_userID).setData({ 'goodbye': [], 'name': "고", "we향ight":0, "image" : "https://firebasestorage.googleapis.com/v0/b/vegan-daily-app-vegimeal.appspot.com/o/cat.png?alt=media&token=90c7ff0f-164c-45a4-b63b-fc02c8342553"})
+            }
+        });
       }
     });
   }

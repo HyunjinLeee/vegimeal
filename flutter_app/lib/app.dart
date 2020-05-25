@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'login.dart';
 import 'tab_page.dart';
 import 'farm.dart';
+import 'wild.dart';
 
 class VegimealApp extends StatelessWidget {
 
@@ -15,6 +16,7 @@ class VegimealApp extends StatelessWidget {
           '/login': (context) => LoginPage(),
 //          '/tabpage': (context) => TabPage(),
           '/farm': (context) => FarmPage(),
+          '/wild': (context) => WildPage(),
         }
     );
   }

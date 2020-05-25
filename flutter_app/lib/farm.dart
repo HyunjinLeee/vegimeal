@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'login.dart';
 
 class FarmPage extends StatefulWidget {
+  static List<String> goodbye;
   @override
   _FarmPageState createState() => _FarmPageState();
 }
@@ -14,31 +15,35 @@ class _FarmPageState extends State<FarmPage> {
   
   @override
   Widget build(BuildContext context) {
-//    Firestore.instance.collection("farm").getDocuments().then((querySnapshot) {
-//      querySnapshot.documents.forEach((result) {
-//        print("ㅗㅑㅗㅑㅗㅑㅗ");
-//        print(result.data);
-//      });
-//    });
-
-    Firestore.instance
-        .collection('farm')
-        .document(LoginPage.loginUser)
-        .snapshots()
-        .listen((DocumentSnapshot ds){
-      print("ㅗㅑㅗㅑㅗㅑㅗ");
-      print(ds.data);
-      print("ㅗㅑㅗㅑㅗㅑㅗ");
-      print(LoginPage.loginUser);
+    Firestore.instance.collection("farm").getDocuments().then((querySnapshot) {
+      querySnapshot.documents.forEach((result) {
+        if(result.documentID == LoginPage.loginUser){
+          print(result.data);
+          result.data.forEach((key,data){
+            if(key == "name"){
+              name = data;
+            }
+            if(key == "image"){
+              image = data;
+            }
+            if(key == "weight"){
+              weight = data;
+            }
+            if(key == "goodbye"){
+              FarmPage.goodbye = data;
+            }
+          });
+        }
+      });
     });
-
+//    _uploadFile();
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 139, 106, 79),
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.pets),
           onPressed: (){
-            //////////////////////
+            Navigator.pushNamed(context,'/wild');
           },
         ),
         backgroundColor: Color.fromARGB(255, 139, 106, 79),
@@ -49,14 +54,19 @@ class _FarmPageState extends State<FarmPage> {
           children: <Widget>[
             Container(
               height: 500,
-              child: CustomPaint(
-                size: Size(double.infinity, double.infinity),
-                painter: CirclePainter(),
+              child: Stack(
+                children:[
+                  CustomPaint(
+                  size: Size(double.infinity, double.infinity),
+                  painter: CirclePainter(),
+                  ),
+                  Image.network(image),
+                ],
               ),
             ),
             Container(
               height: 50,
-              child: Text("돼돌이\n 34kg"),
+              child: Text(name + "\n"+weight.toString()+"kg"),
             ),
           ]
         )
@@ -83,7 +93,6 @@ class CirclePainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     double centerX = size.width / 2.0;
     double centerY = size.height / 2.0;
-
     canvas.drawCircle(Offset(centerX, centerY), 170.0, inPaint);
     canvas.drawCircle(Offset(centerX, centerY), 170.0, wavePaint);
   }
