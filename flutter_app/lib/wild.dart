@@ -7,13 +7,16 @@ class WildPage extends StatefulWidget {
 }
 
 class _WildPageState extends State<WildPage> {
-  List<String> entries;
-  List<String> images;
+  List<String> entries = new List<String>();
+  List<String> images = new List<String>();
 
   @override
   Widget build(BuildContext context) {
-    print(FarmPage.goodbye);
-
+    FarmPage.goodbye.forEach((line) {
+      var arr = line.toString().split(",");
+      if (!entries.contains(arr[0])) entries.add(arr[0]);
+      if (!images.contains(arr[0])) images.add(arr[1]);
+    });
 
     return MaterialApp(
       home: Scaffold(
@@ -24,13 +27,13 @@ class _WildPageState extends State<WildPage> {
           itemBuilder: (BuildContext context, int index) {
             return Container(
               height: 50,
-              color: Colors.amber,
+              color: Colors.amber[100],
               child: Row(
                 children: <Widget>[
                   SizedBox(width: 30,),
-                  Image.network("https://firebasestorage.googleapis.com/v0/b/vegan-daily-app-vegimeal.appspot.com/o/chicken.png?alt=media&token=a0934cfe-ab97-41f6-ae78-20bf0753bfbd"),
+                  Image.network('${images[index]}'),
                   SizedBox(width: 50,),
-                  Text('Entry ${entries[index]}'),
+                  Text('NAME : ${entries[index]}'),
                 ],
               ),
 //              Center(child: Text('Entry ${entries[index]}')),

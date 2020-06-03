@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'login.dart';
 
 class FarmPage extends StatefulWidget {
-  static List<String> goodbye;
+  static List<dynamic> goodbye;
   @override
   _FarmPageState createState() => _FarmPageState();
 }
@@ -18,15 +18,18 @@ class _FarmPageState extends State<FarmPage> {
     Firestore.instance.collection("farm").getDocuments().then((querySnapshot) {
       querySnapshot.documents.forEach((result) {
         if(result.documentID == LoginPage.loginUser){
-          print(result.data);
+//          print("hihihihi---------------------------------------------");
+//          print(result.data);
           result.data.forEach((key,data){
             if(key == "name"){
-              name = data;
+              name = data.toString();
             }
             if(key == "image"){
-              image = data;
+              //print(data);
+              image = data.toString();
             }
             if(key == "weight"){
+              //print(data);
               weight = data;
             }
             if(key == "goodbye"){
@@ -36,7 +39,12 @@ class _FarmPageState extends State<FarmPage> {
         }
       });
     });
+//    print("hihihihi---------------------------------------------------wheywefyyh");
+//    print("name : "+name+"\n");
+//    print("image : "+image+"\n");
+//    print("weight : "+weight.toString()+"\n");
 //    _uploadFile();
+
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 139, 106, 79),
       appBar: AppBar(
