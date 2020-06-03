@@ -20,7 +20,7 @@ class _WildPageState extends State<WildPage> {
 
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: Text("Animals Gone Wild"),backgroundColor: Colors.black,),
+      appBar: AppBar(title: Text("Animals Gone Wild"),backgroundColor: Colors.black,),
         body: ListView.separated(
           padding: const EdgeInsets.all(8),
           itemCount: entries.length,

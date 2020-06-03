@@ -3,6 +3,8 @@ import 'login.dart';
 import 'tab_page.dart';
 import 'farm.dart';
 import 'wild.dart';
+import 'today.dart';
+import 'add.dart';
 
 class VegimealApp extends StatelessWidget {
 
@@ -17,6 +19,8 @@ class VegimealApp extends StatelessWidget {
 //          '/tabpage': (context) => TabPage(),
           '/farm': (context) => FarmPage(),
           '/wild': (context) => WildPage(),
+          '/today': (context) => TodayPage(),
+          '/add' : (context) => AddPage(),
         }
     );
   }
