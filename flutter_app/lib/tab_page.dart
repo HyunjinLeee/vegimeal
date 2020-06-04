@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'recipe_page.dart';
+import 'mission_done_page.dart';
 
 class TabPage extends StatefulWidget {
   final FirebaseUser user;
@@ -22,7 +24,10 @@ class _TabPageState extends State<TabPage> {
     super.initState();
     _pages = [
       //HomePage(widget.user),
-
+      RecipePage(widget.user),
+      MissionDonePage(widget.user),
+      MissionDonePage(widget.user),
+      MissionDonePage(widget.user),
     ];
   }
 
@@ -31,11 +36,10 @@ class _TabPageState extends State<TabPage> {
     return Scaffold(
       body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        fixedColor: Colors.black,
-        //backgroundColor: Color,
-        //selectedItemColor: ,
-        //unselectedItemColor: ,
-        //iconSize: ,
+        //backgroundColor: Color.fromARGB(255, 240, 237, 226),
+        backgroundColor: Color(0xff059379),
+        selectedItemColor: Color(0xff758379),
+        unselectedItemColor: Color(0xffA1B5A7),
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -43,7 +47,7 @@ class _TabPageState extends State<TabPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.pets),
-            title: Text('Animal')
+            title: Text('Animals')
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.local_dining),
@@ -51,11 +55,19 @@ class _TabPageState extends State<TabPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.photo_library),
-            title: Text('Photos')
+            title: Text('Cleared Mission')
           )
         ],
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
       ),
     );
+  }
+
+  void _onItemTapped(int value) {
+    setState(() {
+      _selectedIndex = value;
+    });
   }
 }
 
