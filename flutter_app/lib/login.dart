@@ -1,14 +1,17 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'tab_page.dart';
+import 'recipe_page.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final GoogleSignIn _googleSignIn = GoogleSignIn();
 
 class LoginPage extends StatefulWidget {
-  static String loginUser = "31xaFlaJcnPHGIwmxk8ypUTYinO2";
+  static String loginUser;
 ///로그인 안됨...
   final String title = 'Registration';
   @override
@@ -20,6 +23,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         title: Text(widget.title),
         actions: <Widget>[
           Builder(builder: (BuildContext context) {
@@ -87,6 +91,22 @@ class _GoogleSignInSectionState extends State<_GoogleSignInSection> {
             onPressed: () async {
               _signInWithGoogle();
               Navigator.pushNamed(context,'/today'); //////////////
+              //Navigator.pushNamed(context,'/tabpage'); //////////////
+              /*
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => RecipePage()), //snapshots.data.documents
+              );
+               */
+              /*
+              StreamBuilder(
+                stream: FirebaseAuth.instance.onAuthStateChanged,
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  return TabPage(snapshot.data);
+                },
+              );
+              */
             },
             child: const Text('Sign in with Google'),
           ),
