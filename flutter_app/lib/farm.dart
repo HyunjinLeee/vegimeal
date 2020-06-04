@@ -4,6 +4,7 @@ import 'login.dart';
 
 class FarmPage extends StatefulWidget {
   static List<dynamic> goodbye;
+  FarmPage(user);
   @override
   _FarmPageState createState() => _FarmPageState();
 }
@@ -12,16 +13,14 @@ class _FarmPageState extends State<FarmPage> {
   String name;
   String image;
   int weight;
-  
-  @override
-  Widget build(BuildContext context) {
-    Firestore.instance.collection("farm").getDocuments().then((querySnapshot) {
+
+  Future<void> _loadInformation() async {
+    await Firestore.instance.collection("farm").getDocuments().then((querySnapshot) {
       querySnapshot.documents.forEach((result) {
         if(result.documentID == LoginPage.loginUser){
-//          print("hihihihi---------------------------------------------");
-//          print(result.data);
           result.data.forEach((key,data){
             if(key == "name"){
+
               name = data.toString();
             }
             if(key == "image"){
@@ -39,11 +38,11 @@ class _FarmPageState extends State<FarmPage> {
         }
       });
     });
-//    print("hihihihi---------------------------------------------------wheywefyyh");
-//    print("name : "+name+"\n");
-//    print("image : "+image+"\n");
-//    print("weight : "+weight.toString()+"\n");
-//    _uploadFile();
+  }
+  
+  @override
+  Widget build(BuildContext context) {
+    _loadInformation();
 
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 139, 106, 79),

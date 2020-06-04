@@ -18,14 +18,14 @@ class VegimealApp extends StatelessWidget {
           primaryColor: Colors.white,
           accentColor: Colors.black,
         ),
-        home: RootPage()
+        home: RootPage(),
         initialRoute: '/login',
         routes: {
           '/login': (context) => LoginPage(),
 //          '/tabpage': (context) => TabPage(),
-          '/farm': (context) => FarmPage(),
+//          '/farm': (context) => FarmPage(),
           '/wild': (context) => WildPage(),
-          '/today': (context) => TodayPage(),
+//          '/today': (context) => TodayPage(),
           '/add' : (context) => AddPage(),
         }
     );

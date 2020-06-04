@@ -11,7 +11,7 @@ final FirebaseAuth _auth = FirebaseAuth.instance;
 final GoogleSignIn _googleSignIn = GoogleSignIn();
 
 class LoginPage extends StatefulWidget {
-  static String loginUser;
+  static String loginUser = "31xaFlaJcnPHGIwmxk8ypUTYinO2";
 ///로그인 안됨...
   final String title = 'Registration';
   @override
@@ -89,8 +89,9 @@ class _GoogleSignInSectionState extends State<_GoogleSignInSection> {
           alignment: Alignment.center,
           child: RaisedButton(
             onPressed: () async {
+
               _signInWithGoogle();
-              Navigator.pushNamed(context,'/today'); //////////////
+//              Navigator.pushNamed(context,'/today'); //////////////
               //Navigator.pushNamed(context,'/tabpage'); //////////////
               /*
               Navigator.push(
@@ -136,7 +137,9 @@ class _GoogleSignInSectionState extends State<_GoogleSignInSection> {
     setState(() {
       if (user != null) {
         _userID = user.uid;
-        LoginPage.loginUser = user.uid;
+        setState(() {
+          LoginPage.loginUser = user.uid;
+        });
         Firestore.instance.collection('farm').document(_userID).get().then((docSnapshot) => {
             if (!docSnapshot.exists) {
               //유저가 처음일 경우

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutterapp/farm.dart';
+import 'package:flutterapp/today.dart';
 import 'recipe_page.dart';
 import 'mission_done_page.dart';
 
@@ -24,9 +26,9 @@ class _TabPageState extends State<TabPage> {
     super.initState();
     _pages = [
       //HomePage(widget.user),
+      TodayPage(widget.user),
+      FarmPage(widget.user),
       RecipePage(widget.user),
-      MissionDonePage(widget.user),
-      MissionDonePage(widget.user),
       MissionDonePage(widget.user),
     ];
   }

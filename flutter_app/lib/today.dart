@@ -7,6 +7,7 @@ class TodayPage extends StatefulWidget {
    static int NumberOfFood = 0;
    static String type;
 
+   TodayPage(user);
   @override
   _TodayPageState createState() => _TodayPageState();
 }
