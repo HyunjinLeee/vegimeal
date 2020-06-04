@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'tab_page.dart';
 import 'recipe_page.dart';
 
@@ -11,7 +12,7 @@ final GoogleSignIn _googleSignIn = GoogleSignIn();
 
 class LoginPage extends StatefulWidget {
   static String loginUser;
-
+///로그인 안됨...
   final String title = 'Registration';
   @override
   State<StatefulWidget> createState() => _LoginPageState();
@@ -89,6 +90,7 @@ class _GoogleSignInSectionState extends State<_GoogleSignInSection> {
           child: RaisedButton(
             onPressed: () async {
               _signInWithGoogle();
+              Navigator.pushNamed(context,'/today'); //////////////
               //Navigator.pushNamed(context,'/tabpage'); //////////////
               /*
               Navigator.push(
@@ -105,8 +107,6 @@ class _GoogleSignInSectionState extends State<_GoogleSignInSection> {
                 },
               );
               */
-
-
             },
             child: const Text('Sign in with Google'),
           ),
@@ -137,7 +137,13 @@ class _GoogleSignInSectionState extends State<_GoogleSignInSection> {
       if (user != null) {
         _userID = user.uid;
         LoginPage.loginUser = user.uid;
-//        Firestore.instance.collection('user').document(_userID).setData({ 'profile': user.photoUrl, 'email': user.email});
+        Firestore.instance.collection('farm').document(_userID).get().then((docSnapshot) => {
+            if (!docSnapshot.exists) {
+              //유저가 처음일 경우
+              //원래는 새로운 이름 입력받고 해야함,,,
+            Firestore.instance.collection('farm').document(_userID).setData({ 'goodbye': [], 'name': "고", "weight":0, "image" : "https://firebasestorage.googleapis.com/v0/b/vegan-daily-app-vegimeal.appspot.com/o/cat.png?alt=media&token=90c7ff0f-164c-45a4-b63b-fc02c8342553"})
+            }
+        });
       }
     });
   }
