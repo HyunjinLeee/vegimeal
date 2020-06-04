@@ -85,7 +85,12 @@ class _TodayPageState extends State<TodayPage> {
                 shape: CircleBorder(),
               ),
               RawMaterialButton(
-                onPressed: () {},
+                onPressed: TodayPage.NumberOfFood > 0 ? () {
+                  setState(() {
+                    TodayPage.type = "lunch";
+                    Navigator.pushNamed(context,'/add');
+                  });
+                } : null,
                 elevation: 2.0,
                 fillColor: TodayPage.lcondition ? Colors.white : Colors.grey,
                 child: Text("lunch"),
@@ -93,7 +98,12 @@ class _TodayPageState extends State<TodayPage> {
                 shape: CircleBorder(),
               ),
               RawMaterialButton(
-                onPressed: () {},
+                onPressed: TodayPage.NumberOfFood > 0 ? () {
+                  setState(() {
+                    TodayPage.type = "Dinner";
+                    Navigator.pushNamed(context,'/add');
+                  });
+                } : null,
                 elevation: 2.0,
                 fillColor: TodayPage.dcondition ? Colors.white : Colors.grey,
                 child: Text("Dinner"),

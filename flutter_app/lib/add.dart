@@ -37,8 +37,10 @@ class _AddPageState extends State<AddPage> {
     StorageReference storageReference = FirebaseStorage.instance.ref().child(fileName);
     StorageUploadTask storageUploadTask = storageReference.putFile(_image);
     await storageUploadTask.onComplete;
-    downloadURL = await storageReference.getDownloadURL();
-    print(downloadURL);
+    String url = await storageReference.getDownloadURL();
+    setState(() {
+      downloadURL = url;
+    });
   }
 
   @override
