@@ -4,6 +4,7 @@ import 'login.dart';
 
 class FarmPage extends StatefulWidget {
   static List<dynamic> goodbye;
+  static int weight;
   FarmPage(user);
   @override
   _FarmPageState createState() => _FarmPageState();
@@ -12,7 +13,6 @@ class FarmPage extends StatefulWidget {
 class _FarmPageState extends State<FarmPage> {
   String name;
   String image;
-  int weight;
 
   Future<void> _loadInformation() async {
     await Firestore.instance.collection("farm").getDocuments().then((querySnapshot) {
@@ -29,7 +29,7 @@ class _FarmPageState extends State<FarmPage> {
             }
             if(key == "weight"){
               //print(data);
-              weight = data;
+              FarmPage.weight = data;
             }
             if(key == "goodbye"){
               FarmPage.goodbye = data;
@@ -49,6 +49,7 @@ class _FarmPageState extends State<FarmPage> {
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.pets),
+          color: Color.fromARGB(255, 240, 237, 226),
           onPressed: (){
             Navigator.pushNamed(context,'/wild');
           },
@@ -60,6 +61,7 @@ class _FarmPageState extends State<FarmPage> {
         child:Column(
           children: <Widget>[
             Container(
+              padding: const EdgeInsets.all(180),
               height: 500,
               child: Stack(
                 children:[
@@ -67,13 +69,15 @@ class _FarmPageState extends State<FarmPage> {
                   size: Size(double.infinity, double.infinity),
                   painter: CirclePainter(),
                   ),
-                  Image.network(image),
+                  image == null?
+                  Image.asset('image/defualt.png',width: 1,height: 1,) :
+                  Image.network(image,width: FarmPage.weight.toDouble(),height: FarmPage.weight.toDouble(),fit:BoxFit.fill ),
                 ],
               ),
             ),
             Container(
               height: 50,
-              child: Text(name + "\n"+weight.toString()+"kg"),
+              child: name == null? Text("Loding..."): Text(name + "\n"+FarmPage.weight.toString()+"kg",),
             ),
           ]
         )

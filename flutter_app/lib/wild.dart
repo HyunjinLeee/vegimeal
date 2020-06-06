@@ -12,11 +12,16 @@ class _WildPageState extends State<WildPage> {
 
   @override
   Widget build(BuildContext context) {
-    FarmPage.goodbye.forEach((line) {
-      var arr = line.toString().split(",");
-      if (!entries.contains(arr[0])) entries.add(arr[0]);
-      if (!images.contains(arr[0])) images.add(arr[1]);
-    });
+    if(FarmPage.goodbye.length == 0) {
+      entries.add("NO animal");
+      images.add("https://images.app.goo.gl/spjy9P6ahXpZzwAX7");
+    }else {
+      FarmPage.goodbye.forEach((line) {
+        var arr = line.toString().split(",");
+        if (!entries.contains(arr[0])) entries.add(arr[0]);
+        if (!images.contains(arr[0])) images.add(arr[1]);
+      });
+    }
 
     return MaterialApp(
       home: Scaffold(

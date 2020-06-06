@@ -6,6 +6,8 @@ import 'dart:io';
 import 'today.dart';
 import 'login.dart';
 import 'package:uuid/uuid.dart';
+import 'farm.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class AddPage extends StatefulWidget {
   @override
@@ -45,6 +47,8 @@ class _AddPageState extends State<AddPage> {
 
   @override
   Widget build(BuildContext context) {
+    final dbRef = FirebaseDatabase.instance.reference().child("recipe");
+    tag.add(dbRef.equalTo("foodName").toString());
     // recipe 제목 불러와서 테그에 넣기
 
     final children = <Widget>[];
@@ -70,6 +74,7 @@ class _AddPageState extends State<AddPage> {
             icon: Icon(
               Icons.file_upload,
               semanticLabel: 'save',
+              color: Colors.white,
             ),
             onPressed: () {
               //firestore에 이미지; 저장해야 함...
@@ -82,6 +87,8 @@ class _AddPageState extends State<AddPage> {
                   'uid': LoginPage.loginUser,
                   'tag': tag
                 });
+                Firestore.instance.collection('farm').document(LoginPage.loginUser)
+                    .updateData({ 'weight' : FarmPage.weight + 10});
 
                 if (TodayPage.type == "Breakfast") {
                   TodayPage.bcondition = false;
@@ -91,7 +98,6 @@ class _AddPageState extends State<AddPage> {
                   TodayPage.dcondition = false;
                 }
                 TodayPage.NumberOfFood--;
-
                 Navigator.pop(context);
               }
             },
