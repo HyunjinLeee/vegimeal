@@ -8,6 +8,7 @@ import 'wild.dart';
 import 'today.dart';
 import 'add.dart';
 import 'root_page.dart';
+import 'detail_page.dart';
 
 class VegimealApp extends StatelessWidget {
   @override
