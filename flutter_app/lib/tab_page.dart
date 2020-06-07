@@ -57,7 +57,7 @@ class _TabPageState extends State<TabPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.photo_library),
-            title: Text('Cleared Mission')
+            title: Text('My Page')
           )
         ],
         currentIndex: _selectedIndex,

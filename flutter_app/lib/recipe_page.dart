@@ -17,13 +17,11 @@ class RecipePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
+        centerTitle: true,
         title: Text(
           '모두의 레시피',
           //style: GoogleFonts.getFont('Bellota', textStyle: display1),
-          //style: TextStyle(
-          //  fontFamily: 'BlackHanSans',
-          //fontStyle: FontStyle.normal,
-          //),
+          style: TextStyle(fontWeight: FontWeight.bold),
         ),
         actions: <Widget>[
           IconButton(
@@ -87,7 +85,7 @@ class RecipePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               AspectRatio(
-                aspectRatio: 18 / 11,
+                aspectRatio: 18 / 13,
                 child: Image.network(
                   document['photoUrl'],
                   fit: BoxFit.fitWidth,
@@ -95,7 +93,7 @@ class RecipePage extends StatelessWidget {
               ),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 8.0),
+                  padding: EdgeInsets.symmetric(horizontal: 10),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
@@ -103,14 +101,15 @@ class RecipePage extends StatelessWidget {
                       Text(
                         document['foodName'],
                         style: TextStyle(
-                          fontSize: 12,
+                          fontSize: 20,
                           fontWeight: FontWeight.bold,
+                          fontFamily: 'Raleway'
                         ),
                       ),
                       SizedBox(height: 3.0),
                       Text(
-                        document['displayName'],
-                        style: TextStyle(fontSize: 8),
+                        '작성자 : ${document['displayName']}',
+                        style: TextStyle(fontSize: 11),
                       ),
                     ],
                   ),

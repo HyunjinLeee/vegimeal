@@ -14,8 +14,10 @@ class MissionDonePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
+        centerTitle: true,
         title: Text(
           '미션 기록지',
+          style: TextStyle(fontWeight: FontWeight.bold),
         ),
         backgroundColor: Colors.white,
       ),
@@ -41,6 +43,7 @@ class MissionDonePage extends StatelessWidget {
 
     return SafeArea(
       child: GridView.builder(
+        padding: EdgeInsets.symmetric(horizontal: 16),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3,
             childAspectRatio: 1,
