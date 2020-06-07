@@ -3,9 +3,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'detail_page.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class MissionDonePage extends StatelessWidget {
   final FirebaseUser user;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   MissionDonePage(this.user);
 
@@ -16,10 +18,29 @@ class MissionDonePage extends StatelessWidget {
         elevation: 0,
         centerTitle: true,
         title: Text(
-          '미션 기록지',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          'My Records',
+          style: GoogleFonts.getFont(
+            'Bellota',
+            fontWeight: FontWeight.w900,
+            fontSize: 22,
+          )
         ),
         backgroundColor: Colors.white,
+        actions: <Widget>[
+          Builder(builder: (BuildContext context) {
+            return FlatButton(
+              child: const Text('Sign out'),
+              textColor: Colors.grey,
+              onPressed: () async {
+                FirebaseAuth.instance.signOut();
+                _googleSignIn.signOut();
+                //Scaffold.of(context).showSnackBar(SnackBar(
+                //  content: Text('Successfully signed out.'),
+                //));
+              },
+            );
+          })
+        ],
       ),
       body: SafeArea(
         child: StreamBuilder<QuerySnapshot>(

@@ -7,6 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
 import 'package:firebase_ml_vision/firebase_ml_vision.dart';
+import 'textrec.dart';
 
 class CreatePage extends StatefulWidget {
   final FirebaseUser user;
@@ -165,29 +166,31 @@ class _CreatePageState extends State<CreatePage> {
                   MaterialButton(
                     elevation: 3,
                     onPressed: () {
+                      Navigator.push(context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                          VisionTextWidget()
+                        )
+                      );
                       // ML kit
+                      /*
                       _getRecipeImage();
                       //readText();
-                      /*
+
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) =>
                                 RecipeImageWidget(_recipeimage)),
                       );
-
                        */
 
+
+                      /*
                       ingredientController.text = text;
                       print(text);
                       print(ingredientController);
-
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                RecipeImageWidget(text, _recipeimage)),
-                      );
+                       */
 
                     },
                     child: Text(
@@ -280,19 +283,20 @@ class _CreatePageState extends State<CreatePage> {
 
 
 class RecipeImageWidget extends StatelessWidget {
-  final String text;
+  //final String text;
   final File image;
-  RecipeImageWidget(this.text, this.image);
+  RecipeImageWidget(this.image);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children: <Widget>[
+
           Image(image: FileImage(image),
           height: 300,
           width: 300,),
-          Text('$text'),
+          //Text('$text'),
       ],)
     );
   }
