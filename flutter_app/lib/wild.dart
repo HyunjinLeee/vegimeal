@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'farm.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class WildPage extends StatefulWidget {
   @override
@@ -27,8 +28,21 @@ class _WildPageState extends State<WildPage> {
       home: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text("Animals Gone Wild"),
+          title: Text("Animals Gone Into The Wild",
+            style: GoogleFonts.getFont(
+              'Bellota',
+              fontWeight: FontWeight.w900,
+              fontSize: 20,
+            ),),
           backgroundColor: Colors.black,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            color: Colors.white,
+            tooltip: 'Back',
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
         ),
         body: ListView.separated(
           padding: const EdgeInsets.all(8),

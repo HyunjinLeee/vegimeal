@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -23,8 +24,10 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text(''),
+        backgroundColor: Color(0xff758379),
         elevation: 0,
-        title: Text(widget.title),
+        /*
         actions: <Widget>[
           Builder(builder: (BuildContext context) {
             return FlatButton(
@@ -47,10 +50,11 @@ class _LoginPageState extends State<LoginPage> {
             );
           })
         ],
+         */
       ),
+      backgroundColor: Color(0xff758379),
       body: Builder(builder: (BuildContext context) {
-        return ListView(
-          scrollDirection: Axis.vertical,
+        return Column(
           children: <Widget>[
             _GoogleSignInSection(),
           ],
@@ -79,11 +83,18 @@ class _GoogleSignInSectionState extends State<_GoogleSignInSection> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Container(
-          child: const Text('Test sign in with Google'),
-          padding: const EdgeInsets.all(16),
-          alignment: Alignment.center,
+        SizedBox(height: 150),
+        Text('Vegimeal',
+          style: GoogleFonts.getFont(
+            'Cherry Swash',
+            textStyle: TextStyle(
+              fontSize: 60,
+              fontWeight: FontWeight.w900,
+              color: Color(0xffAFE496),
+            )
+          ),
         ),
+        SizedBox(height: 170,),
         Container(
           padding: const EdgeInsets.symmetric(vertical: 16.0),
           alignment: Alignment.center,

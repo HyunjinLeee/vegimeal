@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'login.dart';
 
 class FarmPage extends StatefulWidget {
@@ -45,7 +47,7 @@ class _FarmPageState extends State<FarmPage> {
     _loadInformation();
 
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 139, 106, 79),
+      backgroundColor: Color(0xffa68062),
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.pets),
@@ -54,7 +56,7 @@ class _FarmPageState extends State<FarmPage> {
             Navigator.pushNamed(context,'/wild');
           },
         ),
-        backgroundColor: Color.fromARGB(255, 139, 106, 79),
+        backgroundColor: Color(0xffa68062),
         elevation: 0.0,
       ),
       body: SingleChildScrollView(
@@ -62,7 +64,7 @@ class _FarmPageState extends State<FarmPage> {
           children: <Widget>[
             Container(
               padding: const EdgeInsets.all(180),
-              height: 500,
+              height: 430,
               child: Stack(
                 children:[
                   CustomPaint(
@@ -75,9 +77,16 @@ class _FarmPageState extends State<FarmPage> {
                 ],
               ),
             ),
+            SizedBox(height: 10),
             Container(
-              height: 50,
-              child: name == null? Text("Loding..."): Text(name + "\n"+FarmPage.weight.toString()+"kg",),
+              height: 80,
+              child: name == null? Text("Loading..."):
+              Text(name + "\n\n"+FarmPage.weight.toString()+"kg",
+                style: GoogleFonts.getFont(
+                    'Press Start 2P',
+                ),
+                textAlign: TextAlign.center,
+              ),
             ),
           ]
         )

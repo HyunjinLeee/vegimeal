@@ -19,9 +19,13 @@ class RecipePage extends StatelessWidget {
         elevation: 0,
         centerTitle: true,
         title: Text(
-          '모두의 레시피',
+          'Every Recipes',
           //style: GoogleFonts.getFont('Bellota', textStyle: display1),
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: GoogleFonts.getFont(
+            'Bellota',
+            fontWeight: FontWeight.w900,
+            fontSize: 22,
+          ),
         ),
         actions: <Widget>[
           IconButton(
@@ -108,7 +112,7 @@ class RecipePage extends StatelessWidget {
                       ),
                       SizedBox(height: 3.0),
                       Text(
-                        '작성자 : ${document['displayName']}',
+                        'writer : ${document['displayName']}',
                         style: TextStyle(fontSize: 11),
                       ),
                     ],
