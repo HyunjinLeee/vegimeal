@@ -9,7 +9,7 @@ import 'package:mlkit/mlkit.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import 'dart:math';
-import 'package:image_picker/image_picker.dart';
+import 'package:async/async.dart';
 
 class DetailPage extends StatelessWidget {
   final DocumentSnapshot document;
@@ -70,7 +70,7 @@ class DetailPage extends StatelessWidget {
               ),
             ),
             IconButton(
-              icon: Icon(Icons.my_location),
+              icon: Icon(Icons.format_list_numbered),
               onPressed:(){
                 Navigator.push(
                   context,
@@ -96,6 +96,7 @@ class LabelImageWidget extends StatefulWidget {
 }
 
 class _LabelImageWidgetState extends State<LabelImageWidget> {
+  final AsyncMemoizer _memoizer = AsyncMemoizer();
   String imageURL;
   File _file;
   List<VisionLabel> _currentLabels = <VisionLabel>[];
@@ -104,14 +105,16 @@ class _LabelImageWidgetState extends State<LabelImageWidget> {
 
   _LabelImageWidgetState(this.imageURL);
 
-//  @override
-//  initState() {
-//    super.initState();
-//  }
+  @override
+  initState() {
+    super.initState();
+    //urlToFile.then((){
+      //https://idlecomputer.tistory.com/326
+    //});
+  }
 
   @override
   Widget build(BuildContext context) {
-    print("--------------------------------------1");
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -129,7 +132,8 @@ class _LabelImageWidgetState extends State<LabelImageWidget> {
     );
   }
 
-  Future<File> urlToFile(String imageUrl) async {
+  urlToFile(String imageUrl){
+     return this._memoizer.runOnce(() async {
     var rng = new Random();
 
     Directory tempDir = await getTemporaryDirectory();
@@ -155,7 +159,8 @@ class _LabelImageWidgetState extends State<LabelImageWidget> {
     } catch (e) {
       print(e.toString());
     }
-  }
+  });
+}
 
   Widget _buildImage() {
     return SizedBox(
@@ -188,7 +193,6 @@ class _LabelImageWidgetState extends State<LabelImageWidget> {
 
   Widget _buildBody() {
     urlToFile(imageURL);
-    print("--------------------------------------2");
 
     return Container(
       child: Column(
@@ -201,7 +205,6 @@ class _LabelImageWidgetState extends State<LabelImageWidget> {
   }
 
   Widget _buildList(List<VisionLabel> labels) {
-    print("--------------------------------------3");
     if (labels.length == 0) {
       return Text('Empty');
     }

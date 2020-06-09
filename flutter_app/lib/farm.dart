@@ -61,7 +61,7 @@ class _FarmPageState extends State<FarmPage> {
         child:Column(
           children: <Widget>[
             Container(
-              padding: const EdgeInsets.all(180),
+              padding: const EdgeInsets.all(150),
               height: 500,
               child: Stack(
                 children:[
@@ -77,7 +77,7 @@ class _FarmPageState extends State<FarmPage> {
             ),
             Container(
               height: 50,
-              child: name == null? Text("Loding..."): Text(name + "\n"+FarmPage.weight.toString()+"kg",),
+              child: name == null? Text("Your uid : "+LoginPage.loginUser+"\n\t\tLoding..."): Text(name + "\n"+FarmPage.weight.toString()+"kg",style: TextStyle(fontSize: 15),),
             ),
           ]
         )

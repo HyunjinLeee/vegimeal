@@ -4,7 +4,10 @@ class TodayPage extends StatefulWidget {
    static bool bcondition = true;
    static bool lcondition = true;
    static bool dcondition = true;
-   static int NumberOfFood = 0;
+   static bool fCondition = true;
+   static bool sCondition = true;
+   static bool tCondition = true;
+   static int NumberOfFood = -1;
    static String type;
 
    TodayPage(user);
@@ -13,9 +16,6 @@ class TodayPage extends StatefulWidget {
 }
 
 class _TodayPageState extends State<TodayPage> {
-  bool fCondition = true;
-  bool sCondition = true;
-  bool tCondition = true;
 
   @override
   Widget build(BuildContext context) {
@@ -28,45 +28,46 @@ class _TodayPageState extends State<TodayPage> {
           padding: const EdgeInsets.all(40),
           child: Column(
             children: <Widget>[
+              TodayPage.NumberOfFood == 0? Text("FINISH today's plan") : Text(" "),
               SizedBox(height : 10.0),
               RawMaterialButton(
-                onPressed: fCondition ? () {
+                onPressed: TodayPage.fCondition ? () {
                   setState(() {
-                    sCondition = false;
-                    tCondition = false;
+                    TodayPage.sCondition = false;
+                    TodayPage.tCondition = false;
                     TodayPage.NumberOfFood = 1;
                   });
                 } : null,
                 elevation: 2.0,
-                fillColor: fCondition ? Colors.white : Colors.grey,
+                fillColor: TodayPage.fCondition ? Colors.white : Colors.grey,
                 child: Text("1"), //size 35
                 padding: EdgeInsets.all(30.0),
                 shape: CircleBorder(),
               ),
               RawMaterialButton(
-                onPressed: sCondition ? () {
+                onPressed: TodayPage.sCondition ? () {
                   setState(() {
-                    fCondition = false;
-                    tCondition = false;
+                    TodayPage.fCondition = false;
+                    TodayPage.tCondition = false;
                     TodayPage.NumberOfFood = 2;
                   });
                 } : null,
                 elevation: 2.0,
-                fillColor: sCondition ? Colors.white : Colors.grey,
+                fillColor: TodayPage.sCondition ? Colors.white : Colors.grey,
                 child: Text("2"),
                 padding: EdgeInsets.all(30.0),
                 shape: CircleBorder(),
               ),
               RawMaterialButton(
-                onPressed: tCondition ? () {
+                onPressed: TodayPage.tCondition ? () {
                   setState(() {
-                    sCondition = false;
-                    fCondition = false;
+                    TodayPage.sCondition = false;
+                    TodayPage.fCondition = false;
                     TodayPage.NumberOfFood = 3;
                   });
                 } : null,
                 elevation: 2.0,
-                fillColor: tCondition ? Colors.white : Colors.grey,
+                fillColor: TodayPage.tCondition ? Colors.white : Colors.grey,
                 child: Text("3"),
                 padding: EdgeInsets.all(30.0),
                 shape: CircleBorder(),

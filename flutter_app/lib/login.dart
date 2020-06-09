@@ -11,8 +11,8 @@ final FirebaseAuth _auth = FirebaseAuth.instance;
 final GoogleSignIn _googleSignIn = GoogleSignIn();
 
 class LoginPage extends StatefulWidget {
-  static String loginUser = "31xaFlaJcnPHGIwmxk8ypUTYinO2";
-///로그인 안됨...
+  static String loginUser;
+
   final String title = 'Registration';
   @override
   State<StatefulWidget> createState() => _LoginPageState();
