@@ -11,7 +11,7 @@ final FirebaseAuth _auth = FirebaseAuth.instance;
 final GoogleSignIn _googleSignIn = GoogleSignIn();
 
 class LoginPage extends StatefulWidget {
-  static String loginUser = "31xaFlaJcnPHGIwmxk8ypUTYinO2";
+  static String loginUser;
 ///로그인 안됨...
   final String title = 'Registration';
   @override
@@ -91,23 +91,6 @@ class _GoogleSignInSectionState extends State<_GoogleSignInSection> {
             onPressed: () async {
 
               _signInWithGoogle();
-//              Navigator.pushNamed(context,'/today'); //////////////
-              Navigator.pushNamed(context,'/photo'); //////////////
-              /*
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => RecipePage()), //snapshots.data.documents
-              );
-               */
-              /*
-              StreamBuilder(
-                stream: FirebaseAuth.instance.onAuthStateChanged,
-                builder: (BuildContext context, AsyncSnapshot snapshot) {
-                  return TabPage(snapshot.data);
-                },
-              );
-              */
             },
             child: const Text('Sign in with Google'),
           ),

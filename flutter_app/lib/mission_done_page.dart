@@ -5,8 +5,9 @@ import 'package:firebase_storage/firebase_storage.dart';
 
 
 class DonePage extends StatefulWidget {
-  static Record choose;
-  static String docId;
+  final FirebaseUser user;
+
+  DonePage(this.user);
 
   @override
   _DonePageState createState() => _DonePageState();

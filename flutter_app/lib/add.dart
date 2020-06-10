@@ -56,8 +56,9 @@ class _AddPageState extends State<AddPage> {
               backgroundColor: Color.fromARGB(255, 240, 237, 226),
               label: Text('${entries[i]}'),
               onPressed: () {
-                if(!tag.contains(entries[i]))
-                tag.add(entries[i]);
+                if(!tag.contains(entries[i]) && entries[i] != "Instance of 'Query'") {
+                  tag.add(entries[i]);
+                }
               }
           )
       );

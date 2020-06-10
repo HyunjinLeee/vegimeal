@@ -22,7 +22,7 @@ class VegimealApp extends StatelessWidget {
           '/wild': (context) => WildPage(),
           '/add' : (context) => AddPage(),
           '/new' : (context) => NewAnimalPage(),
-          '/photo' : (context) => DonePage(),
+//          '/photo' : (context) => DonePage(),
         }
     );
   }
