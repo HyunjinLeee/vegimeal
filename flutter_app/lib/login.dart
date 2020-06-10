@@ -92,7 +92,7 @@ class _GoogleSignInSectionState extends State<_GoogleSignInSection> {
 
               _signInWithGoogle();
 //              Navigator.pushNamed(context,'/today'); //////////////
-              //Navigator.pushNamed(context,'/tabpage'); //////////////
+              Navigator.pushNamed(context,'/photo'); //////////////
               /*
               Navigator.push(
                 context,

@@ -29,7 +29,7 @@ class _TabPageState extends State<TabPage> {
       TodayPage(widget.user),
       FarmPage(widget.user),
       RecipePage(widget.user),
-      MissionDonePage(widget.user),
+      RecipePage(widget.user),///done page로 수정
     ];
   }
 
