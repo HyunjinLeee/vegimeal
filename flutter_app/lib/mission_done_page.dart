@@ -23,6 +23,7 @@ class _DonePageState extends State<DonePage> {
 
       final children = <Widget>[];
       for (var i = 0; i < record.tag.length; i++) {
+        if(record.tag[i].toString().startsWith("Instance")) continue;
         children.add(
             Chip(
               backgroundColor: Color.fromARGB(255, 139, 106, 79),

@@ -62,7 +62,7 @@ class _NewAnimalPageState extends State<NewAnimalPage> {
 
                 FarmPage.name = _nameController.text;
                 FarmPage.image = fileName;
-
+                NewAnimalPage.newAnimal = false;
                 Navigator.pop(context);
               }
             },

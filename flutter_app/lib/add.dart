@@ -23,6 +23,7 @@ class _AddPageState extends State<AddPage> {
   String type;
   List<String> entries = <String>["vegan","Lacto vegetarian","Ovo vegetarian","Lacto-ovo vegetarian","Pesco-vegetarian","Pollo-vegetarian","Flexitarian"];
   List<String> tag = List<String>();
+  int maxWeight;
 
   void getGalleryImage(ImageSource source, {BuildContext context}) async {
     var image = await ImagePicker.pickImage(source: source);
@@ -34,7 +35,7 @@ class _AddPageState extends State<AddPage> {
     });
   }
 
-  Future<void> _uploadFile() async {
+  Future _uploadFile(BuildContext context) async {
     StorageReference storageReference = FirebaseStorage.instance.ref().child(fileName);
     StorageUploadTask storageUploadTask = storageReference.putFile(_image);
     await storageUploadTask.onComplete;
@@ -42,7 +43,41 @@ class _AddPageState extends State<AddPage> {
     setState(() {
       downloadURL = url;
     });
+
+    maxWeight = FarmPage.weight + 10;
+    Firestore.instance.collection('food').document(Uuid().v1())
+        .setData({
+      'image': downloadURL,
+      'uid': LoginPage.loginUser,
+      'tag': tag
+    });
+    Firestore.instance.collection('farm').document(LoginPage.loginUser)
+        .updateData({ 'weight' : maxWeight});
+
+    FarmPage.weight = maxWeight;
+
+    if (TodayPage.type == "Breakfast") {
+      TodayPage.bcondition = false;
+    } else if (TodayPage.type == "lunch") {
+      TodayPage.lcondition = false;
+    } else {
+      TodayPage.dcondition = false;
+    }
+    TodayPage.NumberOfFood--;
+
+    if(TodayPage.NumberOfFood == 0){
+      TodayPage.fCondition = false;
+      TodayPage.sCondition = false;
+      TodayPage.tCondition = false;
+      TodayPage.bcondition = false;
+      TodayPage.lcondition = false;
+      TodayPage.dcondition = false;
+    }
+
+    if(maxWeight >= 100) NewAnimalPage.newAnimal = true;
+      Navigator.pop(context);
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +92,7 @@ class _AddPageState extends State<AddPage> {
               backgroundColor: Color.fromARGB(255, 240, 237, 226),
               label: Text('${entries[i]}'),
               onPressed: () {
-                if(!tag.contains(entries[i]) && entries[i] != "Instance of 'Query'") {
+                if(!tag.contains(entries[i].toString())) {
                   tag.add(entries[i]);
                 }
               }
@@ -86,33 +121,7 @@ class _AddPageState extends State<AddPage> {
             ),
             onPressed: () {
               //firestore에 이미지; 저장해야 함...
-              if(fileName != null) _uploadFile();
-              
-              if(downloadURL != null) {
-                Firestore.instance.collection('food').document(Uuid().v1())
-                    .setData({
-                  'image': downloadURL,
-                  'uid': LoginPage.loginUser,
-                  'tag': tag
-                });
-                Firestore.instance.collection('farm').document(LoginPage.loginUser)
-                    .updateData({ 'weight' : FarmPage.weight + 10});
-
-                if (TodayPage.type == "Breakfast") {
-                  TodayPage.bcondition = false;
-                } else if (TodayPage.type == "lunch") {
-                  TodayPage.lcondition = false;
-                } else {
-                  TodayPage.dcondition = false;
-                }
-                TodayPage.NumberOfFood--;
-
-                if((FarmPage.weight + 10) >= 100){
-                  NewAnimalPage.newAnimal = true;
-                }else {
-                  Navigator.pop(context);
-                }
-              }
+              if(fileName != null) _uploadFile(context);
             },
           ),
         ],
