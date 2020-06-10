@@ -90,6 +90,7 @@ class _DonePageState extends State<DonePage> {
 
       body: Column(
         children: <Widget>[
+          SizedBox(height: 8),
           Expanded(
             child:_buildBody(context),
           )

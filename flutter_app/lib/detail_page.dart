@@ -10,6 +10,7 @@ import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import 'dart:math';
 import 'package:async/async.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class DetailPage extends StatelessWidget {
   final DocumentSnapshot document;
@@ -40,30 +41,63 @@ class DetailPage extends StatelessWidget {
                 height: 250,
               ),
             ),
-            Text(
-              '   ' + document['foodName'],
-              style: TextStyle(
-                fontSize: 25,
+            SizedBox(height: 5),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: Divider(
+                color: Color(0xffA1B5A7),
+                thickness: 2,
+                //indent: 5,
+                //endIndent: 5,
               ),
             ),
-            SizedBox(height: 3,),
-            Text(
-              '      글쓴이: ' + document['displayName'],
-              style: TextStyle(
-                fontSize: 12,
+            //SizedBox(height: 5),
+            Container(
+              //padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: ListTile(
+                leading: Text(
+                  document['foodName'],
+                  style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Raleway'
+                  ),
+                ),
+                trailing: Text(
+                  'Writer: ' + document['displayName'],
+                  style: TextStyle(
+                    fontSize: 12,
+                  ),
+                ),
               ),
             ),
             SizedBox(
-              height: 10,
+              height: 10
             ),
-            Text('     준비물'),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: Text('준비물',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                ),
+              ),
+            ),
             ListTile(
               leading: Text(document['ingredient']),
             ),
             SizedBox(
-              height: 5,
+              height: 5
             ),
-            Text('    만드는 방법'),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: Text('만드는 방법',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                ),
+              ),
+            ),
             ListTile(
               leading: Text(
                 document['howTo'],
@@ -118,9 +152,21 @@ class _LabelImageWidgetState extends State<LabelImageWidget> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('label image'),
+          elevation: 0,
+          backgroundColor: Colors.white,
+          centerTitle: true,
+          title: Text('Image Labeling',
+            style: GoogleFonts.getFont(
+              'Bellota',
+              fontWeight: FontWeight.w900,
+              fontSize: 22,
+              color: Colors.black,
+            ),
+          ),
           leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios),
+            icon: Icon(Icons.arrow_back,
+                color: Colors.black,
+            ),
             tooltip: 'Back',
             onPressed: () {
               Navigator.pop(context);
