@@ -62,6 +62,7 @@ class _NewAnimalPageState extends State<NewAnimalPage> {
 
                 FarmPage.name = _nameController.text;
                 FarmPage.image = fileName;
+                FarmPage.weight = 20;
                 NewAnimalPage.newAnimal = false;
                 Navigator.pop(context);
               }

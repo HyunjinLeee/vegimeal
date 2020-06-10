@@ -90,7 +90,7 @@ class _FarmPageState extends State<FarmPage> {
                   ),
                   Container(
                     height: 50,
-                    child: FarmPage.name == null? Text("Your uid : "+LoginPage.loginUser+"\n\t\tLoding..."): Text(FarmPage.name + "\n"+FarmPage.weight.toString()+"kg",style: TextStyle(fontSize: 15),),
+                    child: (FarmPage.name == null)? Text("Your uid : "+LoginPage.loginUser+"\n\t\tLoding..."): Text(FarmPage.name + "\n"+FarmPage.weight.toString()+"kg",style: TextStyle(fontSize: 15),),
                   ),
                 ]
             )
