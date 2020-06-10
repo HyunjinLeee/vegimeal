@@ -5,7 +5,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 
 class DonePage extends StatefulWidget {
   final FirebaseUser user;
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   DonePage(this.user);
 
