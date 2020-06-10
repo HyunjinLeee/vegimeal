@@ -3,9 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
-
 class DonePage extends StatefulWidget {
   final FirebaseUser user;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   DonePage(this.user);
 
@@ -72,6 +72,7 @@ class _DonePageState extends State<DonePage> {
       },
     );
   }
+
 
   Widget _buildList(BuildContext context, List<DocumentSnapshot> snapshot) {
     return GridView.count(

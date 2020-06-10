@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'today.dart';
@@ -66,14 +67,22 @@ class _AddPageState extends State<AddPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add " + TodayPage.type),
-        backgroundColor: Colors.black,
+        elevation: 0,
+        centerTitle: true,
+        title: Text("Add " + TodayPage.type,
+          style: GoogleFonts.getFont(
+            'Bellota',
+            fontWeight: FontWeight.w900,
+            fontSize: 22,
+          ),
+        ),
+        backgroundColor: Colors.white,
         actions: <Widget>[
           IconButton(
             icon: Icon(
               Icons.file_upload,
               semanticLabel: 'save',
-              color: Colors.white,
+              color: Colors.black,
             ),
             onPressed: () {
               //firestore에 이미지; 저장해야 함...

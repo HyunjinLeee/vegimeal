@@ -6,6 +6,7 @@ import 'package:flutterapp/farm.dart';
 import 'package:flutterapp/today.dart';
 import 'recipe_page.dart';
 import 'mission_done_page.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class TabPage extends StatefulWidget {
   final FirebaseUser user;
@@ -38,26 +39,31 @@ class _TabPageState extends State<TabPage> {
     return Scaffold(
       body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
-        //backgroundColor: Color.fromARGB(255, 240, 237, 226),
-        backgroundColor: Color(0xff059379),
+        showUnselectedLabels: false,
+        backgroundColor: Color(0xffedeadd),
+        type: BottomNavigationBarType.fixed,
         selectedItemColor: Color(0xff758379),
         unselectedItemColor: Color(0xffA1B5A7),
+        iconSize: 26,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            title: Text('Home')
+            title: Text(
+              'Home',
+              style: GoogleFonts.getFont('Bellota',fontWeight: FontWeight.w900),)
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.pets),
-            title: Text('Animals')
+            title: Text('Animals',
+              style: GoogleFonts.getFont('Bellota',fontWeight: FontWeight.w900),)
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.local_dining),
-            title: Text('Recipes')
+            title: Text('Recipes',style: GoogleFonts.getFont('Bellota',fontWeight: FontWeight.w900),)
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.photo_library),
-            title: Text('Cleared Mission')
+            title: Text('My Page',style: GoogleFonts.getFont('Bellota',fontWeight: FontWeight.w900),)
           )
         ],
         currentIndex: _selectedIndex,
