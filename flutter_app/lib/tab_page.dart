@@ -63,7 +63,7 @@ class _TabPageState extends State<TabPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.photo_library),
-            title: Text('My Page',style: GoogleFonts.getFont('Bellota',fontWeight: FontWeight.w900),)
+            title: Text('Album',style: GoogleFonts.getFont('Bellota',fontWeight: FontWeight.w900),)
           )
         ],
         currentIndex: _selectedIndex,
