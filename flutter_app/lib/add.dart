@@ -9,6 +9,7 @@ import 'login.dart';
 import 'package:uuid/uuid.dart';
 import 'farm.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'newAnimal.dart';
 
 class AddPage extends StatefulWidget {
   @override
@@ -16,9 +17,6 @@ class AddPage extends StatefulWidget {
 }
 
 class _AddPageState extends State<AddPage> {
-  final _nameController = TextEditingController();
-  final _usernameController = TextEditingController();
-  final _passwordController = TextEditingController();
   File _image;
   String fileName;
   String downloadURL;
@@ -59,8 +57,9 @@ class _AddPageState extends State<AddPage> {
               backgroundColor: Color.fromARGB(255, 240, 237, 226),
               label: Text('${entries[i]}'),
               onPressed: () {
-                if(!tag.contains(entries[i]))
-                tag.add(entries[i]);
+                if(!tag.contains(entries[i]) && entries[i] != "Instance of 'Query'") {
+                  tag.add(entries[i]);
+                }
               }
           )
       );
@@ -107,7 +106,12 @@ class _AddPageState extends State<AddPage> {
                   TodayPage.dcondition = false;
                 }
                 TodayPage.NumberOfFood--;
-                Navigator.pop(context);
+
+                if((FarmPage.weight + 10) >= 100){
+                  NewAnimalPage.newAnimal = true;
+                }else {
+                  Navigator.pop(context);
+                }
               }
             },
           ),

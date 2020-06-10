@@ -12,7 +12,7 @@ final FirebaseAuth _auth = FirebaseAuth.instance;
 final GoogleSignIn _googleSignIn = GoogleSignIn();
 
 class LoginPage extends StatefulWidget {
-  static String loginUser = "31xaFlaJcnPHGIwmxk8ypUTYinO2";
+  static String loginUser;
 ///로그인 안됨...
   final String title = 'Registration';
   @override
@@ -102,23 +102,6 @@ class _GoogleSignInSectionState extends State<_GoogleSignInSection> {
             onPressed: () async {
 
               _signInWithGoogle();
-//              Navigator.pushNamed(context,'/today'); //////////////
-              //Navigator.pushNamed(context,'/tabpage'); //////////////
-              /*
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => RecipePage()), //snapshots.data.documents
-              );
-               */
-              /*
-              StreamBuilder(
-                stream: FirebaseAuth.instance.onAuthStateChanged,
-                builder: (BuildContext context, AsyncSnapshot snapshot) {
-                  return TabPage(snapshot.data);
-                },
-              );
-              */
             },
             child: const Text('Sign in with Google'),
           ),
@@ -155,7 +138,8 @@ class _GoogleSignInSectionState extends State<_GoogleSignInSection> {
             if (!docSnapshot.exists) {
               //유저가 처음일 경우
               //원래는 새로운 이름 입력받고 해야함,,,
-              Firestore.instance.collection('farm').document(_userID).setData({ 'goodbye': [], 'name': "고", "weight":10, "image" : "https://firebasestorage.googleapis.com/v0/b/vegan-daily-app-vegimeal.appspot.com/o/cat.png?alt=media&token=90c7ff0f-164c-45a4-b63b-fc02c8342553"})}
+            Firestore.instance.collection('farm').document(_userID).setData({ 'goodbye': [], 'name': "고", "weight":10, "image" : "https://firebasestorage.googleapis.com/v0/b/vegan-daily-app-vegimeal.appspot.com/o/cat.png?alt=media&token=90c7ff0f-164c-45a4-b63b-fc02c8342553"})
+            }
         });
       }
     });

@@ -15,7 +15,7 @@ class _WildPageState extends State<WildPage> {
   Widget build(BuildContext context) {
     if(FarmPage.goodbye.length == 0) {
       entries.add("NO animal");
-      images.add("https://images.app.goo.gl/spjy9P6ahXpZzwAX7");
+      images.add("https://firebasestorage.googleapis.com/v0/b/vegan-daily-app-vegimeal.appspot.com/o/close.png?alt=media&token=b363d53d-fd95-40c7-b210-428321d35e05");
     }else {
       FarmPage.goodbye.forEach((line) {
         var arr = line.toString().split(",");
