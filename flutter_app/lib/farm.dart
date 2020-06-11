@@ -77,23 +77,25 @@ class _FarmPageState extends State<FarmPage> {
                           painter: CirclePainter(),
                         ),
                         Container(
-                          padding: EdgeInsets.only(left: 70.0, top: 70.0),
-                          child: Stack(
-                            children: <Widget>[
-                              NewAnimalPage.newAnimal ? IconButton(
-                                icon: Icon(Icons.pets),
-                                color: Color.fromARGB(255, 240, 237, 226),
-                                onPressed: (){
-                                  Navigator.pushNamed(context,'/new');
-                                },
-                              )
-                                  :
-                              FarmPage.image == null?
-                              Image.asset('image/defualt.png',width: 1,height: 1,) :
-                              Image.network(FarmPage.image, width: imageSize ,height: imageSize,fit:BoxFit.fill ),
-                            ],
+                          padding: EdgeInsets.only(left: 0, top: 0),
+                          child: Center(
+                            child: Stack(
+                              children: <Widget>[
+                                NewAnimalPage.newAnimal ? IconButton(
+                                  icon: Icon(Icons.pets),
+                                  color: Color.fromARGB(255, 240, 237, 226),
+                                  onPressed: (){
+                                    Navigator.pushNamed(context,'/new');
+                                  },
+                                )
+                                    :
+                                FarmPage.image == null?
+                                Image.asset('image/defualt.png',width: 1,height: 1,) :
+                                Image.network(FarmPage.image, width: imageSize ,height: imageSize,fit:BoxFit.fill ),
+                              ],
 
-                          ),
+                            ),
+                          )
                         )
                       ],
                     ),
