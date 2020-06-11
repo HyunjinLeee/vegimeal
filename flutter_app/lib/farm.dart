@@ -49,8 +49,6 @@ class _FarmPageState extends State<FarmPage> {
   Widget build(BuildContext context) {
     _loadInformation();
 
-    double imageSize = FarmPage.weight.toDouble() *3;
-
     return Scaffold(
         backgroundColor: Color.fromARGB(255, 139, 106, 79),
         appBar: AppBar(
@@ -91,7 +89,7 @@ class _FarmPageState extends State<FarmPage> {
                                     :
                                 FarmPage.image == null?
                                 Image.asset('image/defualt.png',width: 1,height: 1,) :
-                                Image.network(FarmPage.image, width: imageSize ,height: imageSize,fit:BoxFit.fill ),
+                                Image.network(FarmPage.image, width: (FarmPage.weight.toDouble() *3) ,height: (FarmPage.weight.toDouble() *3),fit:BoxFit.fill ),
                               ],
 
                             ),

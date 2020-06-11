@@ -15,6 +15,7 @@ class VisionTextWidget extends StatefulWidget {
 class _VisionTextWidgetState extends State<VisionTextWidget> {
   File _file;
   List<VisionText> _currentLabels = <VisionText>[];
+  List<String> clipText = List<String>();
 
   FirebaseVisionTextDetector detector = FirebaseVisionTextDetector.instance;
 
@@ -46,7 +47,7 @@ class _VisionTextWidgetState extends State<VisionTextWidget> {
               child: Text('Copy Text'),
               onPressed: () {
                 //Clipboard.setData(ClipboardData(text: "{$_currentLabels}"));
-                toClipboard(_currentLabels);
+                toClipboard(clipText);
               },
             )
           ],
@@ -136,6 +137,7 @@ class _VisionTextWidgetState extends State<VisionTextWidget> {
             padding: const EdgeInsets.all(1.0),
             itemCount: texts.length,
             itemBuilder: (context, i) {
+              clipText.add(texts[i].text);
               return _buildRow(texts[i].text);
             }),
       ),
@@ -151,7 +153,7 @@ class _VisionTextWidgetState extends State<VisionTextWidget> {
     );
   }
 
-  void toClipboard(List<VisionText> texts) {
+  void toClipboard(List<String> texts) {
     String t = texts.toString();
     ClipboardManager.copyToClipBoard(t).then((result) {
       final snackBar = SnackBar(
