@@ -33,6 +33,7 @@ class _DonePageState extends State<DonePage> {
 
       return Card(
         clipBehavior: Clip.antiAlias,
+        color: Color.fromARGB(255, 240, 237, 226),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
