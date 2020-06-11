@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class DonePage extends StatefulWidget {
   final FirebaseUser user;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   DonePage(this.user);
 
@@ -13,9 +15,6 @@ class DonePage extends StatefulWidget {
 }
 
 class _DonePageState extends State<DonePage> {
-
-  // TODO: Add a variable for Category (104)
-
   List<Card> _buildGridCards(BuildContext context, List<DocumentSnapshot> snapshot) {
 
     return snapshot.map((data) {//snapshot data
@@ -87,10 +86,25 @@ class _DonePageState extends State<DonePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.white,
+        actions: <Widget>[
+          Builder(builder: (BuildContext context){
+            return FlatButton(
+              child: Text('Sign out'),
+              textColor: Colors.grey,
+              onPressed: () async {
+                FirebaseAuth.instance.signOut();
+                //_googleSignIn.signOut();
+              },
+            );
+          },)
+        ],
+      ),
       body: Column(
         children: <Widget>[
-          SizedBox(height: 8),
+          //SizedBox(height: 8),
           Expanded(
             child:_buildBody(context),
           )
