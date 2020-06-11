@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mlkit/mlkit.dart';
 
@@ -39,6 +40,14 @@ class _VisionTextWidgetState extends State<VisionTextWidget> {
               Navigator.pop(context);
             },
           ),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('Copy Text'),
+              onPressed: () {
+                Clipboard.setData(ClipboardData(text: "{$_currentLabels}"));
+              },
+            )
+          ],
         ),
         body: _buildBody(),
         floatingActionButton: FloatingActionButton(
