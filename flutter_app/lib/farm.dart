@@ -49,6 +49,8 @@ class _FarmPageState extends State<FarmPage> {
   Widget build(BuildContext context) {
     _loadInformation();
 
+    double imageSize = FarmPage.weight.toDouble() *3;
+
     return Scaffold(
         backgroundColor: Color.fromARGB(255, 139, 106, 79),
         appBar: AppBar(
@@ -66,31 +68,45 @@ class _FarmPageState extends State<FarmPage> {
             child:Column(
                 children: <Widget>[
                   Container(
-                    padding: const EdgeInsets.all(150),
-                    height: 500,
+                    padding: const EdgeInsets.only(left: 10.0, top: 8.0),
+                    height: 430,
                     child: Stack(
                       children:[
                         CustomPaint(
                           size: Size(double.infinity, double.infinity),
                           painter: CirclePainter(),
                         ),
-                        NewAnimalPage.newAnimal ? IconButton(
-                          icon: Icon(Icons.pets),
-                          color: Color.fromARGB(255, 240, 237, 226),
-                          onPressed: (){
-                            Navigator.pushNamed(context,'/new');
-                          },
+                        Container(
+                          padding: EdgeInsets.only(left: 70.0, top: 70.0),
+                          child: Stack(
+                            children: <Widget>[
+                              NewAnimalPage.newAnimal ? IconButton(
+                                icon: Icon(Icons.pets),
+                                color: Color.fromARGB(255, 240, 237, 226),
+                                onPressed: (){
+                                  Navigator.pushNamed(context,'/new');
+                                },
+                              )
+                                  :
+                              FarmPage.image == null?
+                              Image.asset('image/defualt.png',width: 1,height: 1,) :
+                              Image.network(FarmPage.image, width: imageSize ,height: imageSize,fit:BoxFit.fill ),
+                            ],
+
+                          ),
                         )
-                            :
-                        FarmPage.image == null?
-                        Image.asset('image/defualt.png',width: 1,height: 1,) :
-                        Image.network(FarmPage.image,width: FarmPage.weight.toDouble(),height: FarmPage.weight.toDouble(),fit:BoxFit.fill ),
                       ],
                     ),
                   ),
                   Container(
-                    height: 50,
-                    child: (FarmPage.name == null)? Text("Your uid : "+LoginPage.loginUser+"\n\t\tLoding..."): Text(FarmPage.name + "\n"+FarmPage.weight.toString()+"kg",style: TextStyle(fontSize: 15),),
+                    height: 70,
+                    child: (FarmPage.name == null)? Text("Your uid : "+LoginPage.loginUser+"\n\t\tLoding..."):
+                    Text(FarmPage.name + "\n"+FarmPage.weight.toString()+"kg",style: GoogleFonts.getFont(
+                      'Literata',
+                      fontSize: 25,
+                      fontWeight: FontWeight.w900,
+                      color: Color.fromARGB(255, 240, 237, 226),
+                    ),),
                   ),
                 ]
             )
