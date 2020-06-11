@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mlkit/mlkit.dart';
+import 'package:clipboard_manager/clipboard_manager.dart';
 
 class VisionTextWidget extends StatefulWidget {
   @override
@@ -44,7 +45,8 @@ class _VisionTextWidgetState extends State<VisionTextWidget> {
             FlatButton(
               child: Text('Copy Text'),
               onPressed: () {
-                Clipboard.setData(ClipboardData(text: "{$_currentLabels}"));
+                //Clipboard.setData(ClipboardData(text: "{$_currentLabels}"));
+                toClipboard(_currentLabels);
               },
             )
           ],
@@ -147,6 +149,20 @@ class _VisionTextWidgetState extends State<VisionTextWidget> {
       ),
       dense: true,
     );
+  }
+
+  void toClipboard(List<VisionText> texts) {
+    String t = texts.toString();
+    ClipboardManager.copyToClipBoard(t).then((result) {
+      final snackBar = SnackBar(
+        content: Text('Copied to Clipboard'),
+        action: SnackBarAction(
+          label: 'Undo',
+          onPressed: () {},
+        ),
+      );
+      Scaffold.of(context).showSnackBar(snackBar);
+    });
   }
 }
 
