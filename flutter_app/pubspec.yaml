@@ -48,6 +48,7 @@ dependencies:
   scoped_model: ^1.0.1
   flutter_spinkit: ^4.1.2
   transparent_image: ^0.1.0
+  clipboard_manager: ^0.0.4
 
 dev_dependencies:
   flutter_test:
